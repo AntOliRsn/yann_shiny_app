@@ -10,16 +10,12 @@ tabItem(tabName = "games_management",
           orientation = "horizontal",
           add_rank_list(
             text = "List of players",
-            labels = list(
-              "one",
-              "two",
-              "three"
-            ),
+            labels = data_to_list(load_data(file_type = "all_players")),
             input_id = "rank_list_1"
           ),
           add_rank_list(
             text = "Game's players",
-            labels = NULL,
+            labels = data_to_list(load_data(file_type = "game_players")),
             input_id = "rank_list_2"
           )
         )
