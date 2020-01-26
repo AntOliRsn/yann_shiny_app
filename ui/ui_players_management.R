@@ -1,17 +1,19 @@
-fluidPage(
-  fluidRow(
-    box(title = "Manage players", width = 6, status = "primary",solidHeader = TRUE,
-      splitLayout(
-        textInput("first_name", label = "First name", value = "Yann"),
-        textInput("last_name", label = "Last name", value = "Vaillard")
-      ),
-      actionButton("add_btn", "Add"),
-      actionButton("delete_btn", "Delete")
-    )
-  ),
-  fluidRow(
-    box(title = "List of players", width = 6, status = "primary",solidHeader = TRUE,
-      DT::dataTableOutput("shiny_table")
+tabItem(tabName = "players_management", 
+  fluidPage(
+    fluidRow(
+      box(title = "Manage players", width = 6, status = "primary",solidHeader = TRUE,
+        splitLayout(
+          textInput("first_name", label = "First name", value = "Yann"),
+          textInput("last_name", label = "Last name", value = "Vaillard")
+        ),
+        actionButton("add_btn", "Add"),
+        actionButton("delete_btn", "Delete")
+      )
+    ),
+    fluidRow(
+      box(title = "List of players", width = 6, status = "primary",solidHeader = TRUE,
+        DT::dataTableOutput("shiny_table")
+      )
     )
   )
 )
