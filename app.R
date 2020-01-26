@@ -1,6 +1,9 @@
 library(shiny)
 library(shinydashboard)
 library(sortable)
+library(stringr)
+library(dplyr)
+library(DT)
 
 # Load utils methofds
 source('utils.R', local = TRUE)
@@ -17,7 +20,7 @@ sidebar <- dashboardSidebar(
 body <- dashboardBody(
 #  useShinyjs(),
 #  introjsUI(),
-#  includeCSS("css/styles.css"),
+  includeCSS("css/style.css"),
 #  tags$style(appCSS),
   tabItems(
     source("ui/ui_players_management.R",  local = TRUE)$value,

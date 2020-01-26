@@ -5,9 +5,11 @@ this_table = load_data(file_type = "all_players")
 this_table <- reactiveVal(this_table)
 
 observeEvent(input$add_btn, {
-  t = rbind(data.frame(first_name = input$first_name,
-                       last_name = input$last_name), 
+  t = rbind(data.frame(first_name = str_to_title(input$first_name),
+                       last_name = str_to_title(input$last_name)), 
             this_table())
+  t = t[!duplicated(t), ]
+
   this_table(t)
   save_data(t, file_type="all_players")
 })

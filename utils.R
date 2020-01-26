@@ -28,7 +28,6 @@ data_to_list = function(data) {
 }
 
 list_to_data = function(list) {
-  print(list)
   if (length(list) == 0) {
     data = data.frame(matrix(ncol = 2, nrow = 0))
   } else {
@@ -39,3 +38,21 @@ list_to_data = function(list) {
   colnames(data) = c("first_name", "last_name")
   return(data)
 }
+
+get_diff_df = function(df1, df2) {
+  if (dim(df2)[1] == 0) {
+    diff_df = df1
+  } else {
+    options(warn=-1)
+    diff_df = setdiff(df1,df2)
+    options(warn=0)
+  }
+  return(diff_df)
+}
+
+
+
+
+
+
+
