@@ -1,22 +1,17 @@
 tabItem(tabName = "games_management", 
   fluidPage(
     fluidRow(
-      box(title = "Test", width = 12, status = "primary",solidHeader = TRUE,
-        bucket_list(
-          header = NULL,
-          group_name = "bucket_list_group",
-          orientation = "horizontal",
-          add_rank_list(
-            text = "List of players",
-            labels = data_to_list(get_diff_df(load_data(file_type = "all_players"), load_data(file_type="game_players"))),
-            input_id = "rank_list_1"
-            ),
-          add_rank_list(
-            text = "Game's players",
-            labels = data_to_list(load_data(file_type = "game_players")),
-            input_id = "rank_list_2"
+      box(width=3,
+        actionButton("rmv", "Reset", icon("redo"), 
+                     style="color: #fff; background-color: #EE5534; border-color: #EE5534; padding-right:30px; padding-left:30px"), 
+        #tags$style(type='text/css', "#button { vertical-align- middle; height- 50px; width- 100%; font-size- 30px;}")
+      )
+    ),
+    fluidRow(
+      box(title = "Manage game players", width = 12, status = "primary",solidHeader = TRUE,
+          tags$div(id = "container_div",
+                   drag_and_drop_lists_ui
           )
-        )
       )
     )
   )

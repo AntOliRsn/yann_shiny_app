@@ -4,15 +4,17 @@ library(sortable)
 library(stringr)
 library(dplyr)
 library(DT)
+library(zeallot)
 
 # Load utils methofds
 source('utils.R', local = TRUE)
+source('ui/reactive_ui.R', local = TRUE)
 
 # Creates the sidebar at the right of the app
 sidebar <- dashboardSidebar(
   sidebarMenu(
     menuItem("Players management", tabName = "players_management", icon = icon("map-o")),
-    menuItem("Games", tabName = "games_management", icon = icon("area-chart"))
+    menuItem("Game management", tabName = "games_management", icon = icon("area-chart"))
     )
 )
 

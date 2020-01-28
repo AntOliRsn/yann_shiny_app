@@ -33,15 +33,31 @@ observeEvent(input$rank_list_2, {
 })
 
 
-output$results_1 <-
-  renderPrint(
-    input$rank_list_1 # This matches the input_id of the first rank list
+
+observeEvent(input$rmv, {
+  removeUI(
+    selector = "#reactive_div", 
+    #selector = "div:has(> #reactive_div)", 
   )
-output$results_2 <-
-  renderPrint(
-    input$rank_list_2 # This matches the input_id of the second rank list
+  insertUI(
+    selector = "#container_div",
+    where = "afterEnd",
+    ui = tags$div(id="reactive_div", 
+                  bucket_list(
+                    header = NULL,
+                    group_name = "bucket_list_group",
+                    orientation = "horizontal",
+                    add_rank_list(
+                      text = "List of players",
+                      labels = data_to_list(get_diff_df(load_data(file_type = "all_players"), load_data(file_type="game_players"))),
+                      input_id = "rank_list_1"
+                    ),
+                    add_rank_list(
+                      text = "Game's players",
+                      labels = data_to_list(load_data(file_type = "game_players")),
+                      input_id = "rank_list_2"
+                    )
+                  )
+    )
   )
-output$results_3 <-
-  renderPrint(
-    input$bucket_list_group # Matches the group_name of the bucket list
-  )
+})
