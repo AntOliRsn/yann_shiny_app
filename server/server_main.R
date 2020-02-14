@@ -25,20 +25,27 @@ observeEvent(input$add_btn, {
 
 observeEvent(input$delete_btn, {
   t = this_table()
-  if (!is.null(input$shiny_table_rows_selected)) {
-    t <- t[-as.numeric(input$shiny_table_rows_selected),]
-  }
-  this_table(t)
-  save_data(t, file_type="all_players")
   
-  removeUI(
-    selector = "#reactive_div" 
-  )
-  insertUI(
-    selector = "#container_div",
-    where = "afterEnd",
-    ui = return_drag_and_drop_list_ui()
-  )
+  if (!is.null(input$shiny_table_rows_selected)) {
+    
+    removed_lines = as.numeric(input$shiny_table_rows_selected)
+    removed_players_df = t[removed_lines, ]
+    
+    t <- t[-removed_lines,]
+    this_table(t)
+    save_data(t, file_type="all_players")
+    
+    remove_player_from_game(removed_players_df)
+    
+    removeUI(
+      selector = "#reactive_div" 
+    )
+    insertUI(
+      selector = "#container_div",
+      where = "afterEnd",
+      ui = return_drag_and_drop_list_ui()
+    )
+  }
 })
 
 output$shiny_table <- renderDT({
