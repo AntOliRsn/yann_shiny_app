@@ -59,7 +59,9 @@ empty_game_players_list = function() {
 
 remove_player_from_game = function(removed_players_df) {
   game_players_df = load_data(file_type = "game_players")
+  options(warn=-1)
   game_players_df = anti_join(game_players_df, removed_players_df, by=c("first_name", "last_name"))
+  options(warn=0)
   save_data(game_players_df, file_type = "game_players")
 }
 
