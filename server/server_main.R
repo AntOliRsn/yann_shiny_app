@@ -12,6 +12,15 @@ observeEvent(input$add_btn, {
 
   this_table(t)
   save_data(t, file_type="all_players")
+  
+  removeUI(
+    selector = "#reactive_div" 
+  )
+  insertUI(
+    selector = "#container_div",
+    where = "afterEnd",
+    ui = return_drag_and_drop_list_ui()
+  )
 })
 
 observeEvent(input$delete_btn, {
@@ -21,6 +30,15 @@ observeEvent(input$delete_btn, {
   }
   this_table(t)
   save_data(t, file_type="all_players")
+  
+  removeUI(
+    selector = "#reactive_div" 
+  )
+  insertUI(
+    selector = "#container_div",
+    where = "afterEnd",
+    ui = return_drag_and_drop_list_ui()
+  )
 })
 
 output$shiny_table <- renderDT({
@@ -33,7 +51,6 @@ observeEvent(input$rank_list_2, {
 })
 
 
-
 observeEvent(input$rmv, {
   
   empty_game_players_list()
@@ -44,22 +61,6 @@ observeEvent(input$rmv, {
   insertUI(
     selector = "#container_div",
     where = "afterEnd",
-    ui = tags$div(id="reactive_div", 
-                  bucket_list(
-                    header = NULL,
-                    group_name = "bucket_list_group",
-                    orientation = "horizontal",
-                    add_rank_list(
-                      text = "List of players",
-                      labels = data_to_list(get_diff_df(load_data(file_type = "all_players"), load_data(file_type="game_players"))),
-                      input_id = "rank_list_1"
-                    ),
-                    add_rank_list(
-                      text = "Game's players",
-                      labels = data_to_list(load_data(file_type = "game_players")),
-                      input_id = "rank_list_2"
-                    )
-                  )
-    )
+    ui = return_drag_and_drop_list_ui()
   )
 })

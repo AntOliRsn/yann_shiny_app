@@ -55,9 +55,3 @@ empty_game_players_list = function() {
   game_players_df = game_players_df[FALSE, ]
   save_data(game_players_df, file_type = "game_players")
 }
-
-
-
-
-
-

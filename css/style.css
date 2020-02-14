@@ -9,3 +9,10 @@
   overflow-y: scroll;
   scrollbar-width: thin;	
 }
+
+.icon{
+  position:absolute;
+  left:18px;
+  top:9px;
+}
+

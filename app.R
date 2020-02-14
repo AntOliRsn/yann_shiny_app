@@ -13,8 +13,8 @@ source('ui/reactive_ui.R', local = TRUE)
 # Creates the sidebar at the right of the app
 sidebar <- dashboardSidebar(
   sidebarMenu(
-    menuItem("Players management", tabName = "players_management", icon = icon("map-o")),
-    menuItem("Game management", tabName = "games_management", icon = icon("area-chart"))
+    menuItem("Players management", tabName = "players_management", icon = icon("users")),
+    menuItem("Game management", tabName = "games_management", icon = icon("golf-ball"))
     )
 )
 
@@ -33,7 +33,7 @@ body <- dashboardBody(
 # UI part 
 ui <- shinyUI(
   dashboardPage(skin="blue",
-                dashboardHeader(title = "Games management"),
+                dashboardHeader(title = "Game management"),
                 sidebar,
                 body
   )
