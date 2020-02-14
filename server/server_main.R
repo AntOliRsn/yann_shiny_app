@@ -6,7 +6,8 @@ this_table <- reactiveVal(this_table)
 
 observeEvent(input$add_btn, {
   t = rbind(data.frame(first_name = str_to_title(input$first_name),
-                       last_name = str_to_title(input$last_name)), 
+                       last_name = str_to_title(input$last_name), 
+                       stringsAsFactors=FALSE), 
             this_table())
   t = t[!duplicated(t), ]
 
@@ -47,6 +48,15 @@ observeEvent(input$delete_btn, {
     )
   }
 })
+
+output$download_data_btn <- downloadHandler(
+  filename = function() {
+    paste("players_list", ".csv", sep = "")
+  },
+  content = function(file) {
+    write.csv(this_table(), file, row.names = TRUE)
+  }
+)
 
 output$shiny_table <- renderDT({
   datatable(this_table(), options = list(columnDefs = list(list(className = 'dt-center', targets = 0:2))))
