@@ -35,6 +35,8 @@ observeEvent(input$rank_list_2, {
 
 
 observeEvent(input$rmv, {
+  
+  empty_game_players_list()
   removeUI(
     selector = "#reactive_div", 
     #selector = "div:has(> #reactive_div)", 

@@ -50,6 +50,11 @@ get_diff_df = function(df1, df2) {
   return(diff_df)
 }
 
+empty_game_players_list = function() {
+  game_players_df = load_data(file_type = "game_players")
+  game_players_df = game_players_df[FALSE, ]
+  save_data(game_players_df, file_type = "game_players")
+}
 
 
 
