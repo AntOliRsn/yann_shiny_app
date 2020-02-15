@@ -29,11 +29,13 @@ data_to_list = function(data) {
 
 list_to_data = function(list) {
   if (length(list) == 0) {
-    data = data.frame(matrix(ncol = 2, nrow = 0))
+    data = data.frame(first_name=character(), last_name=character(), 
+                      stringsAsFactors=FALSE)
   } else {
     split_word = function(word) {strsplit(word, " ")[[1]]}
     splitted_list = lapply(list, split_word)
-    data = data.frame(matrix(unlist(splitted_list), nrow=length(splitted_list), byrow=T))
+    data = data.frame(matrix(unlist(splitted_list), nrow=length(splitted_list), byrow=T), 
+                      stringsAsFactors=FALSE)
   }
   colnames(data) = c("first_name", "last_name")
   return(data)
